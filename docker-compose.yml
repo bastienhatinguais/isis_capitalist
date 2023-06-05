@@ -10,9 +10,8 @@ services:
     networks:
       - my_network
     volumes:
-      - ./back:/usr/src/app
+      - ${WEBAPP_STORAGE_HOME}/back:/usr/src/app
       - /usr/src/app/node_modules
-    command: npm run dev
     environment:
       - NODE_ENV=prod
 
