@@ -1,0 +1,569 @@
+{
+  "name": "Système solaire",
+  "logo": "/icones/solarsystem.png",
+  "money": 156632104100000.200684,
+  "score": 0,
+  "totalangels": 0,
+  "activeangels": 0,
+  "angelbonus": 2,
+  "lastupdate": "1680193376493",
+  "products": [
+    {
+      "id": 1,
+      "name": "Planète Terre",
+      "logo": "/icones/terre.png",
+      "cout": 20.789281794113688,
+      "croissance": 1.05,
+      "revenu": 1,
+      "vitesse": 1000,
+      "quantite": 78,
+      "timeleft": 376,
+      "managerUnlocked": true,
+      "paliers": [
+        {
+          "name": "Recyclage",
+          "logo": "/icones/recyclage.png",
+          "seuil": 25,
+          "idCible": 1,
+          "ratio": 2,
+          "typeratio": "revenu",
+          "unlocked": false
+        },
+        {
+          "name": "Agriculture avancée",
+          "logo": "/icones/agriculture.png",
+          "seuil": 100,
+          "idCible": 1,
+          "ratio": 2,
+          "typeratio": "croissance",
+          "unlocked": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Planète sans eau",
+      "logo": "/icones/sans_eau.png",
+      "cout": 196.71513572895662,
+      "croissance": 1.07,
+      "revenu": 5,
+      "vitesse": 2000,
+      "quantite": 187,
+      "timeleft": 376,
+      "managerUnlocked": true,
+      "paliers": [
+        {
+          "name": "Installation de générateurs",
+          "logo": "/icones/generators.png",
+          "seuil": 50,
+          "idCible": 2,
+          "ratio": 2,
+          "typeratio": "revenu",
+          "unlocked": false
+        },
+        {
+          "name": "Mine de cristaux",
+          "logo": "/icones/cristaux.png",
+          "seuil": 200,
+          "idCible": 2,
+          "ratio": 2,
+          "typeratio": "revenu",
+          "unlocked": false
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Planète sans atmosphère",
+      "logo": "/icones/sans_atmosphere.png",
+      "cout": 1100,
+      "croissance": 1.1,
+      "revenu": 25,
+      "vitesse": 5000,
+      "quantite": 1,
+      "timeleft": 0,
+      "managerUnlocked": false,
+      "paliers": [
+        {
+          "name": "Production d'oxygène",
+          "logo": "/icones/oxygene.png",
+          "seuil": 200,
+          "idCible": 3,
+          "ratio": 2,
+          "typeratio": "revenu",
+          "unlocked": false
+        },
+        {
+          "name": "Installation de stations spatiales",
+          "logo": "/icones/station_spatiale.png",
+          "seuil": 500,
+          "idCible": 3,
+          "ratio": 2,
+          "typeratio": "revenu",
+          "unlocked": false
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Planète gazeuse",
+      "logo": "/icones/gazeuse.png",
+      "cout": 10056.785937499995,
+      "croissance": 1.15,
+      "revenu": 100,
+      "vitesse": 10000,
+      "quantite": 5,
+      "timeleft": 0,
+      "managerUnlocked": false,
+      "paliers": [
+        {
+          "name": "Récolte de gaz",
+          "logo": "/icones/gaz.png",
+          "seuil": 500,
+          "idCible": 4,
+          "ratio": 2,
+          "typeratio": "revenu",
+          "unlocked": false
+        },
+        {
+          "name": "Centrale de traitement de gaz",
+          "logo": "/icones/centrale_gaz.png",
+          "seuil": 1000,
+          "idCible": 4,
+          "ratio": 2,
+          "typeratio": "revenu",
+          "unlocked": false
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Planète glace",
+      "logo": "/icones/glace.png",
+      "cout": 462210.6472375907,
+      "croissance": 1.2,
+      "revenu": 500,
+      "vitesse": 15000,
+      "quantite": 17,
+      "timeleft": 2376,
+      "managerUnlocked": true,
+      "paliers": [
+        {
+          "name": "Forage de la glace",
+          "logo": "/icones/forage_glace.png",
+          "seuil": 2000,
+          "idCible": 5,
+          "ratio": 2,
+          "typeratio": "revenu",
+          "unlocked": false
+        },
+        {
+          "name": "Usine de traitement de glace",
+          "logo": "/icones/usine_glace.png",
+          "seuil": 5000,
+          "idCible": 5,
+          "ratio": 2,
+          "typeratio": "revenu",
+          "unlocked": false
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Planète lave",
+      "logo": "/icones/lave.png",
+      "cout": 100000,
+      "croissance": 1.25,
+      "revenu": 1000,
+      "vitesse": 20000,
+      "quantite": 0,
+      "timeleft": 2376,
+      "managerUnlocked": true,
+      "paliers": [
+        {
+          "name": "Forage de la lave",
+          "logo": "/icones/forage_lave.png",
+          "seuil": 10000,
+          "idCible": 6,
+          "ratio": 2,
+          "typeratio": "revenu",
+          "unlocked": false
+        },
+        {
+          "name": "Usine de traitement de la lave",
+          "logo": "/icones/usine_lave.png",
+          "seuil": 25000,
+          "idCible": 6,
+          "ratio": 2,
+          "typeratio": "revenu",
+          "unlocked": false
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Trou noir",
+      "logo": "/icones/trou_noir.png",
+      "cout": 1500000000,
+      "croissance": 1.5,
+      "revenu": 1000000,
+      "vitesse": 1000000,
+      "quantite": 1,
+      "timeleft": 0,
+      "managerUnlocked": false,
+      "paliers": [
+        {
+          "name": "Accrétion de matière",
+          "logo": "/icones/accretion.png",
+          "seuil": 1000000000,
+          "idCible": 7,
+          "ratio": 2,
+          "typeratio": "revenu",
+          "unlocked": false
+        },
+        {
+          "name": "Jet de matière",
+          "logo": "/icones/jet_matiere.png",
+          "seuil": 5000000000,
+          "idCible": 7,
+          "ratio": 2,
+          "typeratio": "revenu",
+          "unlocked": false
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Galaxie",
+      "logo": "/icones/galaxie.png",
+      "cout": 1000000000000000,
+      "croissance": 1.6,
+      "revenu": 10000000,
+      "vitesse": 10000000,
+      "quantite": 0,
+      "timeleft": 0,
+      "managerUnlocked": false,
+      "paliers": [
+        {
+          "name": "Exploration spatiale",
+          "logo": "/icones/exploration.png",
+          "seuil": 1000000000000,
+          "idCible": 8,
+          "ratio": 2,
+          "typeratio": "revenu",
+          "unlocked": false
+        },
+        {
+          "name": "Colonisation",
+          "logo": "/icones/colonisation.png",
+          "seuil": 5000000000000,
+          "idCible": 8,
+          "ratio": 2,
+          "typeratio": "revenu",
+          "unlocked": false
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Étoile",
+      "logo": "/icones/etoile.png",
+      "cout": 1000000000000000000,
+      "croissance": 1.7,
+      "revenu": 100000000,
+      "vitesse": 100000000,
+      "quantite": 1,
+      "timeleft": 2376,
+      "managerUnlocked": true,
+      "paliers": [
+        {
+          "name": "Centrale thermo-nucléaire",
+          "logo": "/icones/centrale_nucleaire.png",
+          "seuil": 1000000000000000,
+          "idCible": 9,
+          "ratio": 2,
+          "typeratio": "revenu",
+          "unlocked": true
+        },
+        {
+          "name": "Fusion nucléaire",
+          "logo": "/icones/fusion.png",
+          "seuil": 5000000000000000,
+          "idCible": 9,
+          "ratio": 2,
+          "typeratio": "revenu",
+          "unlocked": false
+        }
+      ]
+    }
+  ],
+  "allunlocks": [
+    {
+      "name": "All is better than one",
+      "logo": "icones/all.jpg",
+      "seuil": 30,
+      "idcible": 0,
+      "ratio": 2,
+      "typeratio": "gain",
+      "unlocked": false
+    },
+    {
+      "name": "To take and not to give",
+      "logo": "icones/all.jpg",
+      "seuil": 150,
+      "idcible": 0,
+      "ratio": 3,
+      "typeratio": "gain",
+      "unlocked": false
+    },
+    {
+      "name": "Take it all !",
+      "logo": "icones/all.jpg",
+      "seuil": 375,
+      "idcible": 0,
+      "ratio": 3,
+      "typeratio": "gain",
+      "unlocked": false
+    },
+    {
+      "name": "To infinite and beyond !",
+      "logo": "icones/all.jpg",
+      "seuil": 500,
+      "idcible": 0,
+      "ratio": 3,
+      "typeratio": "gain",
+      "unlocked": false
+    }
+  ],
+  "upgrades": [
+    {
+      "name": "Do you like paper bag ?",
+      "logo": "icones/sacpapier.jpg",
+      "seuil": 1000,
+      "idcible": 1,
+      "ratio": 3,
+      "typeratio": "gain",
+      "unlocked": false
+    },
+    {
+      "name": "This is my bin",
+      "logo": "icones/recyclage.jpg",
+      "seuil": 15000,
+      "idcible": 2,
+      "ratio": 3,
+      "typeratio": "gain",
+      "unlocked": false
+    },
+    {
+      "name": "A nice bicycle",
+      "logo": "icones/velo.jpg",
+      "seuil": 15000,
+      "idcible": 3,
+      "ratio": 3,
+      "typeratio": "gain",
+      "unlocked": false
+    },
+    {
+      "name": "I want this car !",
+      "logo": "icones/voitureelec.jpg",
+      "seuil": 100000,
+      "idcible": 4,
+      "ratio": 3,
+      "typeratio": "gain",
+      "unlocked": false
+    },
+    {
+      "name": "Don't laugh ! Just buy ! ",
+      "logo": "icones/eolienne.jpg",
+      "seuil": 200000,
+      "idcible": 5,
+      "ratio": 3,
+      "typeratio": "gain",
+      "unlocked": false
+    },
+    {
+      "name": "A big advance",
+      "logo": "icones/solar.jpg",
+      "seuil": 3000000,
+      "idcible": 6,
+      "ratio": 3,
+      "typeratio": "gain",
+      "unlocked": false
+    },
+    {
+      "name": "I want it all !",
+      "logo": "icones/all.jpg",
+      "seuil": 3500000,
+      "idcible": 0,
+      "ratio": 3,
+      "typeratio": "gain",
+      "unlocked": false
+    },
+    {
+      "name": "Why do you look a my bag ?",
+      "logo": "icones/sacpapier.jpg",
+      "seuil": 4000000,
+      "idcible": 1,
+      "ratio": 3,
+      "typeratio": "gain",
+      "unlocked": false
+    },
+    {
+      "name": "The same bin as my mum.",
+      "logo": "icones/recyclage.jpg",
+      "seuil": 6000000,
+      "idcible": 2,
+      "ratio": 3,
+      "typeratio": "gain",
+      "unlocked": false
+    },
+    {
+      "name": "My bicycle goes fast.",
+      "logo": "icones/velo.jpg",
+      "seuil": 10000000,
+      "idcible": 3,
+      "ratio": 3,
+      "typeratio": "gain",
+      "unlocked": false
+    },
+    {
+      "name": "No more oil",
+      "logo": "icones/voitureelec.jpg",
+      "seuil": 20000000,
+      "idcible": 4,
+      "ratio": 3,
+      "typeratio": "gain",
+      "unlocked": false
+    },
+    {
+      "name": "It's blowing too fast!",
+      "logo": "icones/eolienne.jpg",
+      "seuil": 50000000,
+      "idcible": 5,
+      "ratio": 3,
+      "typeratio": "gain",
+      "unlocked": false
+    },
+    {
+      "name": "Clouds go away !",
+      "logo": "icones/solar.jpg",
+      "seuil": 100000000,
+      "idcible": 6,
+      "ratio": 3,
+      "typeratio": "gain",
+      "unlocked": false
+    },
+    {
+      "name": "Bingo !",
+      "logo": "icones/all.jpg",
+      "seuil": 500000000,
+      "idcible": 0,
+      "ratio": 3,
+      "typeratio": "gain",
+      "unlocked": false
+    }
+  ],
+  "angelupgrades": [
+    {
+      "name": "Angel Sacrifice",
+      "logo": "icones/angel.png",
+      "seuil": 10,
+      "idcible": 0,
+      "ratio": 3,
+      "typeratio": "gain",
+      "unlocked": false
+    },
+    {
+      "name": "Angelic Mutiny",
+      "logo": "icones/angel.png",
+      "seuil": 100000,
+      "idcible": -1,
+      "ratio": 2,
+      "typeratio": "ange",
+      "unlocked": false
+    },
+    {
+      "name": "Angelic Rebellion",
+      "logo": "icones/angel.png",
+      "seuil": 100000000,
+      "idcible": -1,
+      "ratio": 2,
+      "typeratio": "ange",
+      "unlocked": false
+    },
+    {
+      "name": "Angelic Selection",
+      "logo": "icones/angel.png",
+      "seuil": 1000000000,
+      "idcible": 0,
+      "ratio": 5,
+      "typeratio": "gain",
+      "unlocked": false
+    }
+  ],
+  "managers": [
+    {
+      "name": "Wangari Maathai",
+      "logo": "icones/WangariMaathai.jpg",
+      "seuil": 10,
+      "idcible": 1,
+      "ratio": 0,
+      "typeratio": "gain",
+      "unlocked": true
+    },
+    {
+      "name": "Ellen MacArthur",
+      "logo": "icones/ellenmacarthur.jpg",
+      "seuil": 15000,
+      "idcible": 2,
+      "ratio": 0,
+      "typeratio": "gain",
+      "unlocked": true
+    },
+    {
+      "name": "Pierre Rabhi",
+      "logo": "icones/pierreRabhi.jpg",
+      "seuil": 100000,
+      "idcible": 3,
+      "ratio": 0,
+      "typeratio": "gain",
+      "unlocked": false
+    },
+    {
+      "name": "Nicolas Hulot",
+      "logo": "icones/hulot.jpg",
+      "seuil": 500000,
+      "idcible": 4,
+      "ratio": 0,
+      "typeratio": "gain",
+      "unlocked": false
+    },
+    {
+      "name": "Jean-Yves Cousteau",
+      "logo": "icones/cousteau.jpg",
+      "seuil": 1200000,
+      "idcible": 5,
+      "ratio": 0,
+      "typeratio": "gain",
+      "unlocked": true
+    },
+    {
+      "name": "Shiva Vandana",
+      "logo": "icones/shivavandana.jpg",
+      "seuil": 10000000,
+      "idcible": 6,
+      "ratio": 0,
+      "typeratio": "gain",
+      "unlocked": true
+    },
+    {
+      "name": "Manager etoile",
+      "logo": "icones/shivavandana.jpg",
+      "seuil": 100000000,
+      "idcible": 9,
+      "ratio": 0,
+      "typeratio": "gain",
+      "unlocked": true
+    }
+  ]
+}

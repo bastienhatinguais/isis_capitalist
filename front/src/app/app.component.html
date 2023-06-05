@@ -1,0 +1,36 @@
+<div class="header">
+  <img [attr.src]="service.server + world.logo" />
+  <div>{{ world.money | numberFormat }} €</div>
+  <div>multiplicateur</div>
+  <div>{{ service.user }}</div>
+  <div>
+    <button mat-flat-button (click)="changeQuantiteAchat()" color="primary">
+      x{{
+        quantitesAchat[quantiteAchatIndex] == -1
+          ? "MAX"
+          : quantitesAchat[quantiteAchatIndex]
+      }}
+    </button>
+  </div>
+</div>
+<div class="main">
+  <div>liste des boutons de menu</div>
+</div>
+<button mat-button (click)="openModal('manager')">Managers</button>
+<button mat-button (click)="openModal('unlock')">Unlocks</button>
+
+<mat-grid-list cols="4" rowHeight="200px">
+  <mat-grid-tile
+    *ngFor="let product of world.products"
+    class="m-3"
+    [colspan]="2"
+  >
+    <app-product
+      [product]="product"
+      [quantiteAchat]="quantitesAchat[quantiteAchatIndex]"
+      [money]="world.money"
+      (notifyProductionDone)="onProductionDone($event)"
+      (notifyBuy)="onBuy($event)"
+    ></app-product>
+  </mat-grid-tile>
+</mat-grid-list>

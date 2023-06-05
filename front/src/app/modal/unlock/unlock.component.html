@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>Install Angular</h2>
+<mat-dialog-content class="mat-typography">
+  <h1 class="title">Unlocks</h1>
+  <div *ngFor="let product of data.world.products">
+    <div *ngFor="let palier of product.paliers">
+      <mat-card *ngIf="!palier.unlocked" class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title> {{ palier.name }} </mat-card-title>
+          <mat-card-subtitle>
+            {{ product.name }}
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <span> {{ palier.seuil }}</span>
+          <span> {{ palier.typeratio }} : {{ palier.ratio }}</span>
+          <br />
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div *ngFor="let allUnlock of data.world.allunlocks">
+    <mat-card *ngIf="!allUnlock.unlocked" class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title> All unlock :{{ allUnlock.name }} </mat-card-title>
+        <mat-card-subtitle>
+          {{ allUnlock.typeratio }}
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <span> {{ allUnlock.seuil }}</span>
+        <br />
+      </mat-card-content>
+    </mat-card>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

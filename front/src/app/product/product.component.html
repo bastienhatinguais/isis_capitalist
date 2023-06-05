@@ -1,0 +1,29 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <div
+      mat-card-avatar
+      class="example-header-image"
+      (click)="lancerProduction()"
+    ></div>
+    <mat-card-title>{{ product.name }}</mat-card-title>
+    <mat-card-subtitle>{{ prixAPayer | numberFormat }} €</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <span> Quantite actuelle {{ product.quantite }} </span>
+    <br />
+    <span>Quantite à acheter : {{ _quantiteAchat }}</span>
+    timeleft : {{ product.timeleft }}
+    <button
+      mat-flat-button
+      (click)="acheterProduit()"
+      color="primary"
+      [disabled]="this._money == 0 || this._money < this.prixAPayer"
+    >
+      Acheter Produit
+    </button>
+    <mat-progress-bar
+      mode="determinate"
+      [value]="progressBarValue"
+    ></mat-progress-bar>
+  </mat-card-content>
+</mat-card>

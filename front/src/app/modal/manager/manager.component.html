@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>Install Angular</h2>
+<mat-dialog-content class="mat-typography">
+  <h1 class="title">Managers make you feel better !</h1>
+  <div *ngFor="let manager of data.world.managers">
+    <mat-card *ngIf="!manager.unlocked" class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title> {{ manager.name }} </mat-card-title>
+        <mat-card-subtitle>
+          {{ data.world.products[manager.idcible - 1].name }}
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <span> {{ manager.seuil }}</span>
+        <br />
+        {{ manager.unlocked ? "Déverouillé" : "Verouillé" }}
+
+        <button
+          mat-flat-button
+          (click)="hireManager(manager)"
+          color="primary"
+          [disabled]="data.world.money < manager.seuil || data.world.money == 0"
+        >
+          Acheter Produit
+        </button>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>
