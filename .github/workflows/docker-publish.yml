@@ -28,10 +28,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - dockerfile: ./src/Agent/Dockerfile
-            image: ghcr.io/username/image1
-          - dockerfile: ./src/Dockerfile-dril4net-distribution
-            image: ghcr.io/username/image2
+          - dockerfile: ./back/Dockerfile
+            image: ghcr.io/bastienhatinguais/isiscapitalistback
+          - dockerfile: ./front/Dockerfile
+            image: ghcr.io/bastienhatinguais/isiscapitalistfront
     permissions:
       contents: read
       packages: write
