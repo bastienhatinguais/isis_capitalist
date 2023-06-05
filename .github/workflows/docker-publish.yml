@@ -28,9 +28,9 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - dockerfile: ./back/Dockerfile
+          - dockerfile: ./back/DockerFile
             image: ghcr.io/bastienhatinguais/isiscapitalistback
-          - dockerfile: ./front/Dockerfile
+          - dockerfile: ./front/DockerFile
             image: ghcr.io/bastienhatinguais/isiscapitalistfront
     permissions:
       contents: read
