@@ -1,0 +1,38 @@
+.manager-background {
+  position: absolute;
+  position: center;
+  width: 110%;
+  height: 100%;
+  top: -10%;
+  overflow: visible;
+}
+
+.manager-image {
+  width: 80%;
+  height: auto;
+}
+
+.manager-card {
+  background-image: url("../../../assets/card_manager.png");
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 200px;
+  width: 400px;
+}
+
+.manager-content {
+  padding: 20px 24px 20px 24px;
+  display: block;
+  max-height: 65vh;
+  flex-grow: 1;
+  box-sizing: border-box;
+  margin: 0;
+  overflow: auto;
+}
+
+:host ::ng-deep mat-dialog-container {
+  border-radius: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+}
