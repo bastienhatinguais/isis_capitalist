@@ -17,15 +17,25 @@ import { UnlockComponent } from './modal/unlock/unlock.component';
 import { SnackbarComponent } from './snackbar/snackbar.component';
 import { CustomSnackbarService } from './custom-snackbar.service';
 import { CommonModule } from '@angular/common';
+import { UpgradeComponent } from './modal/upgrade/upgrade.component';
+import { AngelComponent } from './modal/angel/angel.component';
+import { AngelUpgradeComponent } from './modal/angel-upgrade/angel-upgrade.component';
+import { DiamondComponent } from './diamond/diamond.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    AngelComponent,
+    AngelUpgradeComponent,
     ProductComponent,
     ManagerComponent,
+    UpgradeComponent,
     NumberFormatPipe,
     UnlockComponent,
     SnackbarComponent,
+    UpgradeComponent,
+    AngelUpgradeComponent,
+    DiamondComponent,
   ],
   imports: [
     CommonModule,

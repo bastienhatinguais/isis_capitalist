@@ -11,7 +11,7 @@ import { CustomSnackbarService } from '../custom-snackbar.service';
 })
 export class ProductComponent implements OnInit {
   constructor(
-    private wsService: WebserviceService,
+    public wsService: WebserviceService,
     private snackBarService: CustomSnackbarService
   ) {}
 
@@ -34,7 +34,7 @@ export class ProductComponent implements OnInit {
     }
   }
 
-  @Output() notifyProductionDone = new EventEmitter<Product>();
+  @Output() notifyProductionDone = new EventEmitter();
   @Output() notifyBuy = new EventEmitter<number>();
 
   _quantiteAchat: number = 1;
@@ -43,38 +43,61 @@ export class ProductComponent implements OnInit {
   prixAPayer: number = 0;
   progressBarValue = 0;
   lastUpdate = Date.now();
+  busy = false;
 
   ngOnInit() {
     setInterval(() => {
       this.calcScore();
-    }, 100);
+    }, 80);
+  }
+
+  calcQtProductionforElapseTime(tempsEcoule: number) {
+    let nbrProduction = 0;
+    if (this.product.managerUnlocked) {
+      if (tempsEcoule > this.product.timeleft) {
+        var nbr = Math.trunc(
+          (tempsEcoule - this.product.timeleft) / this.product.vitesse
+        );
+        nbrProduction = nbr + 1;
+        // /!\ on soustrait la vitesse pour avoir le timeleft
+        this.product.timeleft =
+          this.product.vitesse -
+          (tempsEcoule - this.product.timeleft - this.product.vitesse * nbr);
+      } else {
+        this.product.timeleft = this.product.timeleft - tempsEcoule;
+      }
+    } else if (this.product.timeleft != 0) {
+      // En cours de production manuelle
+      if (this.product.timeleft < tempsEcoule) {
+        nbrProduction = this.product.quantite;
+        this.product.timeleft = 0;
+      } else {
+        this.product.timeleft -= tempsEcoule;
+      }
+    }
+    return nbrProduction;
   }
 
   calcScore() {
+    // Vérification si la production est à l'arrêt (manager verouillé et timeleft = 0)
     if (this.product.timeleft <= 0 && !this.product.managerUnlocked) {
+      this.progressBarValue = 0;
       return;
     }
-    this.product.timeleft -= Date.now() - this.lastUpdate;
-    if (this.product.timeleft <= 0) {
-      this.product.timeleft = 0;
-      this.progressBarValue = 0;
-      this.notifyProductionDone.emit(this.product);
-      if (this.product.managerUnlocked) {
-        //on relance la production si on a le manager
-        this.lancerProduction();
-      }
-    } else {
-      this.progressBarValue =
-        ((this.product.vitesse - this.product.timeleft) /
-          this.product.vitesse) *
-        100;
+    const elapsedTime = Date.now() - this.lastUpdate;
+    const qteProduit = this.calcQtProductionforElapseTime(elapsedTime);
+    if (qteProduit > 0) {
+      this.notifyProductionDone.emit({ product: this.product, qteProduit });
     }
+    this.progressBarValue =
+      ((this.product.vitesse - this.product.timeleft) / this.product.vitesse) *
+      100;
     this.lastUpdate = Date.now();
   }
 
   lancerProduction() {
-    this.product.timeleft = this.product.vitesse;
     if (!this.product.managerUnlocked) {
+      this.product.timeleft = this.product.vitesse;
       this.wsService
         .lancerProduction(this.product)
         .catch((reason) => console.log('erreur: ' + reason));
@@ -83,7 +106,10 @@ export class ProductComponent implements OnInit {
 
   acheterProduit() {
     if (this._money >= this.prixAPayer) {
-      this.wsService.acheterQtProduit(this.product, this._quantiteAchat);
+      this.busy = true;
+      this.wsService
+        .acheterQtProduit(this.product, this._quantiteAchat)
+        .then(() => (this.busy = false));
       this.product.cout *= Math.pow(
         this.product.croissance,
         this._quantiteAchat
@@ -93,7 +119,9 @@ export class ProductComponent implements OnInit {
 
       // Vérification unlock
       this.product.paliers.forEach((p) => {
-        this.calcUpgrade(p);
+        if (!p.unlocked && this.product.quantite >= p.seuil) {
+          this.calcUpgrade(p);
+        }
       });
 
       // Nouveau prix à payer
@@ -118,9 +146,9 @@ export class ProductComponent implements OnInit {
   }
 
   calcUpgrade(p: Palier) {
-    if (!p.unlocked && this.product.quantite >= p.seuil) {
+    if (!p.unlocked) {
       let customMessage = '';
-      // On ajoute l'unlock
+      // On ajoute l'unlock ou l'upgrade
       switch (p.typeratio) {
         case 'vitesse':
           this.product.vitesse /= p.ratio;

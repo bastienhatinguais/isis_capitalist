@@ -1,29 +1,40 @@
-<mat-card class="example-card">
-  <mat-card-header>
-    <div
-      mat-card-avatar
-      class="example-header-image"
-      (click)="lancerProduction()"
-    ></div>
-    <mat-card-title>{{ product.name }}</mat-card-title>
-    <mat-card-subtitle>{{ prixAPayer | numberFormat }} €</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <span> Quantite actuelle {{ product.quantite }} </span>
-    <br />
-    <span>Quantite à acheter : {{ _quantiteAchat }}</span>
-    timeleft : {{ product.timeleft }}
+<div class="d-flex row align-content-center product">
+  <div class="col col-img-product">
+    <div class="image-container">
+      <img
+        [class]="
+          'image-product ' + (product.quantite > 0 ? '' : 'planet-locked')
+        "
+        [src]="wsService.server + '/' + product.logo"
+        (click)="lancerProduction()"
+      />
+    </div>
+    <h3 class="product-quantite">x{{ product.quantite }}</h3>
+  </div>
+  <div class="col">
+    <div class="product-name">
+      <h6>{{ product.name }}</h6>
+    </div>
+
     <button
-      mat-flat-button
+      class="buy-button"
       (click)="acheterProduit()"
-      color="primary"
-      [disabled]="this._money == 0 || this._money < this.prixAPayer"
+      [disabled]="_money == 0 || _money < prixAPayer || busy"
+      [ariaBusy]=""
     >
-      Acheter Produit
+      <span>
+        Acheter {{ _quantiteAchat }} pour {{ prixAPayer | numberFormat }}
+        <app-diamond></app-diamond>
+      </span>
     </button>
+  </div>
+  <div class="col col-progress-bar">
+    <img src="../../assets/fillbar.png" />
     <mat-progress-bar
+      class="product-progress-bar"
       mode="determinate"
+      color="#ffffff"
       [value]="progressBarValue"
     ></mat-progress-bar>
-  </mat-card-content>
-</mat-card>
+  </div>
+</div>

@@ -1,4 +1,58 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@font-face {
+  font-family: Toriko;
+  src: url("assets/04b03.woff2") format("woff2");
+}
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: "Toriko";
+  background: url("assets/bg_space.gif") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.buy-button {
+  border: none;
+  background-color: transparent;
+  background-image: url("./assets/button_up.png") !important;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+  width: 140px;
+  height: 70px;
+}
+
+.buy-button span {
+  position: relative;
+  top: -8px !important;
+  line-height: 15px;
+  display: block;
+}
+
+.buy-button:active {
+  z-index: 10;
+  background-image: url("./assets/button_down.png") !important;
+}
+
+.buy-button:active span {
+  position: relative;
+  top: 2px !important;
+  line-height: 15px;
+  display: block;
+}
+
+::ng-deep .custom-dialog-container .mat-dialog-container {
+  border-radius: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+}

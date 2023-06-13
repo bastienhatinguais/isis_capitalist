@@ -1,7 +1,7 @@
 <div class="header">
   <img [attr.src]="service.server + world.logo" />
-  <div>{{ world.money | numberFormat }} €</div>
-  <div>multiplicateur</div>
+  <div>{{ world.money | numberFormat }} <app-diamond></app-diamond></div>
+  <div>{{ world.angelbonus }}</div>
   <div>{{ service.user }}</div>
   <div>
     <button mat-flat-button (click)="changeQuantiteAchat()" color="primary">
@@ -14,23 +14,28 @@
   </div>
 </div>
 <div class="main">
-  <div>liste des boutons de menu</div>
+  <div class="col">
+    <button mat-button (click)="openModal('manager')">Managers</button>
+    <button mat-button (click)="openModal('unlock')">Unlocks</button>
+    <button mat-button (click)="openModal('upgrade')">Upgrade</button>
+    <button mat-button (click)="openModal('angel')">Investors</button>
+    <button mat-button (click)="openModal('angel-upgrade')">
+      Angel upgrades
+    </button>
+  </div>
+  <mat-grid-list cols="4" rowHeight="150px">
+    <mat-grid-tile
+      *ngFor="let product of world.products"
+      class="m-3"
+      [colspan]="2"
+    >
+      <app-product
+        [product]="product"
+        [quantiteAchat]="quantitesAchat[quantiteAchatIndex]"
+        [money]="world.money"
+        (notifyProductionDone)="onProductionDone($event)"
+        (notifyBuy)="onBuy($event)"
+      ></app-product>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>
-<button mat-button (click)="openModal('manager')">Managers</button>
-<button mat-button (click)="openModal('unlock')">Unlocks</button>
-
-<mat-grid-list cols="4" rowHeight="200px">
-  <mat-grid-tile
-    *ngFor="let product of world.products"
-    class="m-3"
-    [colspan]="2"
-  >
-    <app-product
-      [product]="product"
-      [quantiteAchat]="quantitesAchat[quantiteAchatIndex]"
-      [money]="world.money"
-      (notifyProductionDone)="onProductionDone($event)"
-      (notifyBuy)="onBuy($event)"
-    ></app-product>
-  </mat-grid-tile>
-</mat-grid-list>

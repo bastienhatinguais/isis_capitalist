@@ -12,7 +12,7 @@ import { WebserviceService } from '../../webservice.service';
 export class ManagerComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { world: World; server: string },
-    private wsService: WebserviceService
+    public wsService: WebserviceService
   ) {}
 
   hireManager(manager: Palier) {

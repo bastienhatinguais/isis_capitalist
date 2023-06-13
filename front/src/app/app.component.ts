@@ -1,5 +1,4 @@
 import { ComponentType } from '@angular/cdk/portal';
-import { Type } from '@angular/compiler';
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ManagerComponent } from './modal/manager/manager.component';
@@ -8,7 +7,10 @@ import { Product } from './model/product';
 import { World } from './model/world';
 import { ProductComponent } from './product/product.component';
 import { WebserviceService } from './webservice.service';
-import { CustomSnackbarService } from './custom-snackbar.service';
+import { UpgradeComponent } from './modal/upgrade/upgrade.component';
+import { Palier } from './model/palier';
+import { AngelComponent } from './modal/angel/angel.component';
+import { AngelUpgradeComponent } from './modal/angel-upgrade/angel-upgrade.component';
 
 @Component({
   selector: 'app-root',
@@ -26,6 +28,7 @@ export class AppComponent implements OnInit {
   constructor(public service: WebserviceService, public dialog: MatDialog) {}
 
   ngOnInit() {
+    this.server = this.service.server;
     this.service
       .getWorld()
       .then((world) => {
@@ -41,8 +44,12 @@ export class AppComponent implements OnInit {
       (this.quantiteAchatIndex + 1) % this.quantitesAchat.length;
   }
 
-  onProductionDone(p: Product) {
-    const moneyMade = p.revenu * p.quantite;
+  onProductionDone(data: { product: Product; qteProduit: number }) {
+    const moneyMade =
+      data.product.quantite *
+      data.product.revenu *
+      data.qteProduit *
+      (1 + (this.world.activeangels * this.world.angelbonus) / 100);
     this.world.money += moneyMade;
     this.world.score += moneyMade;
   }
@@ -56,16 +63,60 @@ export class AppComponent implements OnInit {
       case 'unlock':
         modalToOpen = UnlockComponent;
         break;
+      case 'upgrade':
+        modalToOpen = UpgradeComponent;
+        break;
+      case 'angel':
+        modalToOpen = AngelComponent;
+        break;
+      case 'angel-upgrade':
+        modalToOpen = AngelUpgradeComponent;
+        break;
       default:
         // On est pas censé atteindre ce code
         throw 'Erreur dans le type de modal à afficher';
     }
-    this.dialog.open(modalToOpen, {
+    const modalRef = this.dialog.open(modalToOpen, {
+      panelClass: 'custom-dialog-container',
       data: {
         world: this.world,
         server: this.server,
       },
     });
+
+    modalRef.componentInstance.notifyBuyAngelUpgrade?.subscribe(
+      (upgrade: Palier) => {
+        // Angel déjà vérifié précédemment
+        this.world.activeangels -= upgrade.seuil;
+
+        if (upgrade.idcible === 0) {
+          // Bonus pour tous les produits
+          debugger;
+          this.productsComponent.forEach((p) => p.calcUpgrade(upgrade));
+        } else if (upgrade.idcible === -1 && upgrade.typeratio === 'ange') {
+          this.world.angelbonus += upgrade.ratio;
+        }
+        upgrade.unlocked = true;
+      }
+    );
+
+    modalRef.componentInstance.notifyBuyCashUpgrade?.subscribe(
+      (upgrade: Palier) => {
+        // Argent déjà vérifié précédemment
+        this.world.money -= upgrade.seuil;
+
+        if (upgrade.idcible === 0) {
+          // Bonus pour tous les produits
+          this.productsComponent.forEach((p) => p.calcUpgrade(upgrade));
+        } else {
+          // Bonus pour un seul produit
+          this.productsComponent
+            .filter((p) => p.product.id === upgrade.idcible)[0]
+            .calcUpgrade(upgrade);
+        }
+        upgrade.unlocked = true;
+      }
+    );
   }
 
   onBuy(totalAchat: number) {
@@ -78,7 +129,10 @@ export class AppComponent implements OnInit {
         this.world.products.filter((p) => p.quantite < allUnlock.seuil)
           .length == 0
       ) {
-        this.productsComponent.forEach((p) => p.calcUpgrade(allUnlock));
+        this.productsComponent.forEach((p) => {
+          p.calcUpgrade(allUnlock);
+        });
+        allUnlock.unlocked = true;
       }
     });
   }

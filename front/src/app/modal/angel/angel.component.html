@@ -1,0 +1,9 @@
+<mat-dialog-content class="mat-typography">
+  <h1 class="title">Angels</h1>
+  <span>Nombre d'anges actifs : {{ data.world.activeangels }}</span>
+  <span> Nombre d'anges gagné si reset : {{ angelToClaim }}</span>
+  <button mat-button (click)="resetWorld()">Reset le monde</button>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

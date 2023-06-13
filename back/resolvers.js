@@ -1,4 +1,5 @@
 fs = require("fs");
+const world = require("./world.ts");
 
 function saveWorld(context) {
   console.info("Sauvegarde du monde de " + context.user);
@@ -18,7 +19,13 @@ function miseAJourArgent(context) {
   let tempsEcoule = Date.now() - parseInt(context.world.lastupdate);
   context.world.products.forEach((product) => {
     const quantite = calcQtProductionforElapseTime(product, tempsEcoule);
-    context.world.money += product.revenu * quantite;
+    const moneyMade =
+      product.revenu *
+      product.quantite *
+      quantite *
+      (1 + (context.world.activeangels * context.world.angelbonus) / 100);
+    context.world.money += moneyMade;
+    context.world.score += moneyMade;
   });
   context.world.lastupdate = Date.now().toString();
 }
@@ -34,7 +41,7 @@ function calcQtProductionforElapseTime(product, tempsEcoule) {
         product.vitesse -
         (tempsEcoule - product.timeleft - product.vitesse * nbr);
     } else {
-      product.timeleft = product.vitesse - product.timeleft - tempsEcoule;
+      product.timeleft = product.timeleft - tempsEcoule;
     }
   } else if (product.timeleft != 0) {
     // En cours de production manuelle
@@ -46,6 +53,21 @@ function calcQtProductionforElapseTime(product, tempsEcoule) {
     }
   }
   return nbrProduction;
+}
+
+function calcUpgrade(palier, product) {
+  // On ajoute l'unlock ou l'upgrade
+  switch (palier.typeratio) {
+    case "vitesse":
+      product.vitesse /= palier.ratio;
+      product.timeleft /= palier.ratio;
+      break;
+    case "gain":
+      product.revenu *= palier.ratio;
+      break;
+    default:
+      throw "Le type de ratio " + palier.typeratio + " n'existe pas !";
+  }
 }
 
 module.exports = {
@@ -74,8 +96,27 @@ module.exports = {
         throw new Error(`Vous n'avez pas assez d'argent pour faire cet achat.`);
       }
       product.quantite += args.quantite;
-      product.cout *= product.croissance;
+      product.cout *= Math.pow(product.croissance, product.quantite);
       context.world.money -= argentNecessaire;
+
+      // On vérifie les allUnlocks
+      context.world.allunlocks.forEach((allUnlock) => {
+        if (
+          !allUnlock.unlocked &&
+          context.world.products.filter((p) => p.quantite < allUnlock.seuil)
+            .length == 0
+        ) {
+          context.world.products.forEach((p) => calcUpgrade(allUnlock, p));
+          allUnlock.unlocked = true;
+        }
+      });
+
+      // On vérifie les unlocks
+      product.paliers.forEach((p) => {
+        if (!p.unlocked && product.quantite >= p.seuil) {
+          calcUpgrade(p, product);
+        }
+      });
       saveWorld(context);
       return product;
     },
@@ -86,7 +127,6 @@ module.exports = {
         throw new Error(`Le produit avec l'id ${args.id} n'existe pas.`);
       }
       product.timeleft = product.vitesse;
-      context.lastupdate = Date.now();
       saveWorld(context);
       return product;
     },
@@ -114,6 +154,73 @@ module.exports = {
       manager.unlocked = true;
       saveWorld(context);
       return manager;
+    },
+    acheterCashUpgrade(parent, args, context) {
+      miseAJourArgent(context);
+      let upgrade = context.world.upgrades.find((u) => u.name == args.name);
+      if (!upgrade) {
+        throw new Error(`L'upgrade de nom ${args.name} n'existe pas.`);
+      }
+      // Traitement du prix ? allez au cas où
+      if (context.world.money < upgrade.seuil) {
+        throw new Error(
+          `Vous n'avez pas assez d'argent pour acheter l'upgrade ${upgrade.name}.`
+        );
+      }
+      context.world.money -= upgrade.seuil;
+      if (upgrade.idcible === 0) {
+        // Pour tous les produits
+        context.world.products.forEach((p) => calcUpgrade(upgrade, p));
+      } else {
+        let produit = context.world.products[upgrade.idcible - 1];
+        calcUpgrade(upgrade, produit);
+      }
+      upgrade.unlocked = true;
+      saveWorld(context);
+      return upgrade;
+    },
+
+    resetWorld(parent, args, context) {
+      miseAJourArgent(context);
+      const angelToClaim =
+        Math.floor(150 * Math.sqrt(context.world.score / Math.pow(10, 15))) -
+        context.world.totalangels;
+      const score = context.world.score;
+      const totalangels = angelToClaim + context.world.totalangels;
+      const activeangels = angelToClaim + context.world.activeangels;
+      context.world = {
+        ...world,
+        score: score,
+        totalangels: totalangels,
+        activeangels: activeangels,
+      };
+      saveWorld(context);
+      return upgrade;
+    },
+    acheterAngelUpgrade(parent, args, context) {
+      miseAJourArgent(context);
+      let upgrade = context.world.angelupgrades.find(
+        (u) => u.name == args.name
+      );
+      if (!upgrade) {
+        throw new Error(`L'angel upgrade de nom ${args.name} n'existe pas.`);
+      }
+
+      if (context.world.activeangels < upgrade.seuil) {
+        throw new Error(
+          `Vous n'avez pas assez d'argent pour acheter l'upgrade ${upgrade.name}.`
+        );
+      }
+      context.world.activeangels -= upgrade.seuil;
+      if (upgrade.idcible === 0) {
+        // Bonus pour tous les produits
+        context.world.products.forEach((p) => calcUpgrade(upgrade, p));
+      } else if (upgrade.idcible === -1 && upgrade.typeratio === "ange") {
+        context.world.angelbonus += upgrade.ratio;
+      }
+      upgrade.unlocked = true;
+      saveWorld(context);
+      return upgrade;
     },
   },
 };

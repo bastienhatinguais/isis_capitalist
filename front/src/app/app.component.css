@@ -1,14 +1,41 @@
 .header {
-    display: grid;
-    grid-template-columns: 25% 25% 30% 20%;
+  display: grid;
+  grid-template-columns: 70% 10% 10% 10%;
+  color: white;
+  font-size: larger;
+  line-height: 50px;
 }
 
 .main {
-    display: grid;
-    grid-template-columns: 20% 80%;
+  display: grid;
+  grid-template-columns: 20% 80%;
 }
 
 .product {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.mat-progress-bar .mat-progress-bar-fill {
+  transition: none !important;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  text-align: left;
+  color: white !important;
+}
+
+.mat-mdc-button {
+  color: white !important;
+}
+
+::ng-deep .custom-modal {
+  mat-dialog-container {
+    border-radius: none !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+  }
 }
