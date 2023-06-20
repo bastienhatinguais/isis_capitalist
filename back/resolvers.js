@@ -36,7 +36,7 @@ function miseAJourArgent(context) {
 function calcQtProductionforElapseTime(product, tempsEcoule) {
   let nbrProduction = 0;
   if (product.managerUnlocked) {
-    if (tempsEcoule > this.product.timeleft) {
+    if (tempsEcoule > product.timeleft) {
       var nbr = Math.trunc((tempsEcoule - product.timeleft) / product.vitesse);
       nbrProduction = nbr * product.quantite + 1;
       // /!\ on soustrait la vitesse pour avoir le timeleft
@@ -146,12 +146,12 @@ module.exports = {
         );
       }
       // Traitement du prix ?
-      if (context.world.money < manager.cout) {
+      if (context.world.money < manager.seuil) {
         throw new Error(
           `Vous n'avez pas assez d'argent pour acheter le manager ${manager.name}.`
         );
       }
-      context.world.money -= manager.cout;
+      context.world.money -= manager.seuil;
       product.managerUnlocked = true;
       product.timeleft = product.vitesse;
       manager.unlocked = true;

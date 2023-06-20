@@ -16,7 +16,9 @@ export class AngelComponent implements OnInit {
     public dialog: MatDialog
   ) {}
 
-  angelToClaim = 0;
+  angelToClaim =
+    Math.floor(150 * Math.sqrt(this.data.world.score / Math.pow(10, 15))) -
+    this.data.world.totalangels;
 
   ngOnInit(): void {
     this.angelToClaim =
