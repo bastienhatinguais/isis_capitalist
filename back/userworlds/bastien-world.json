@@ -6,17 +6,17 @@
   "totalangels": 0,
   "activeangels": 0,
   "angelbonus": 2,
-  "lastupdate": "1687244972307",
+  "lastupdate": "1687250267409",
   "products": [
     {
       "id": 1,
       "name": "Lune",
       "logo": "/icones/planete1.gif",
-      "cout": 7.353836849680621,
+      "cout": 4,
       "croissance": 1.07,
       "revenu": 1,
       "vitesse": 500,
-      "quantite": 4,
+      "quantite": 1,
       "timeleft": 0,
       "managerUnlocked": false,
       "paliers": [
@@ -24,19 +24,21 @@
           "name": "Exploration lunaire",
           "logo": "/icones/recyclage.png",
           "seuil": 20,
-          "idCible": 1,
+          "idcible": null,
           "ratio": 2,
           "typeratio": "vitesse",
-          "unlocked": false
+          "unlocked": false,
+          "__typename": "Palier"
         },
         {
           "name": "Mines lunaire",
           "logo": "/icones/agriculture.png",
           "seuil": 75,
-          "idCible": 1,
+          "idcible": null,
           "ratio": 2,
           "typeratio": "vitesse",
-          "unlocked": false
+          "unlocked": false,
+          "__typename": "Palier"
         },
         {
           "name": "Gravity boots",
@@ -45,9 +47,186 @@
           "idcible": 1,
           "ratio": 2,
           "typeratio": "vitesse",
-          "unlocked": false
+          "unlocked": false,
+          "__typename": "Palier"
         }
-      ]
+      ],
+      "__typename": "Product"
+    },
+    {
+      "id": 2,
+      "name": "Terre",
+      "logo": "/icones/planete2.gif",
+      "cout": 60,
+      "croissance": 1.15,
+      "revenu": 60,
+      "vitesse": 3000,
+      "quantite": 0,
+      "timeleft": 0,
+      "managerUnlocked": false,
+      "paliers": [
+        {
+          "name": "Transport amélioré",
+          "logo": "/icones/generators.png",
+          "seuil": 20,
+          "idcible": null,
+          "ratio": 2,
+          "typeratio": "vitesse",
+          "unlocked": false,
+          "__typename": "Palier"
+        },
+        {
+          "name": "Mine de cristaux",
+          "logo": "/icones/cristaux.png",
+          "seuil": 75,
+          "idcible": null,
+          "ratio": 2,
+          "typeratio": "vitesse",
+          "unlocked": false,
+          "__typename": "Palier"
+        }
+      ],
+      "__typename": "Product"
+    },
+    {
+      "id": 3,
+      "name": "Mars",
+      "logo": "/icones/planete3.gif",
+      "cout": 720,
+      "croissance": 1.14,
+      "revenu": 540,
+      "vitesse": 6000,
+      "quantite": 0,
+      "timeleft": 0,
+      "managerUnlocked": false,
+      "paliers": [
+        {
+          "name": "Production d'oxygène",
+          "logo": "/icones/oxygene.png",
+          "seuil": 20,
+          "idcible": null,
+          "ratio": 2,
+          "typeratio": "vitesse",
+          "unlocked": false,
+          "__typename": "Palier"
+        },
+        {
+          "name": "Installation de stations spatiales",
+          "logo": "/icones/station_spatiale.png",
+          "seuil": 75,
+          "idcible": null,
+          "ratio": 2,
+          "typeratio": "vitesse",
+          "unlocked": false,
+          "__typename": "Palier"
+        }
+      ],
+      "__typename": "Product"
+    },
+    {
+      "id": 4,
+      "name": "Planète glace",
+      "logo": "/icones/planete4.gif",
+      "cout": 8640,
+      "croissance": 1.13,
+      "revenu": 4320,
+      "vitesse": 12000,
+      "quantite": 0,
+      "timeleft": 0,
+      "managerUnlocked": false,
+      "paliers": [
+        {
+          "name": "Forage de la glace",
+          "logo": "/icones/gaz.png",
+          "seuil": 20,
+          "idcible": null,
+          "ratio": 2,
+          "typeratio": "vitesse",
+          "unlocked": false,
+          "__typename": "Palier"
+        },
+        {
+          "name": "Usine de traitement de glace",
+          "logo": "/icones/centrale_gaz.png",
+          "seuil": 75,
+          "idcible": null,
+          "ratio": 2,
+          "typeratio": "vitesse",
+          "unlocked": false,
+          "__typename": "Palier"
+        }
+      ],
+      "__typename": "Product"
+    },
+    {
+      "id": 5,
+      "name": "Planète lave",
+      "logo": "/icones/planete5.gif",
+      "cout": 103680,
+      "croissance": 1.12,
+      "revenu": 51840,
+      "vitesse": 24000,
+      "quantite": 0,
+      "timeleft": 0,
+      "managerUnlocked": false,
+      "paliers": [
+        {
+          "name": "Exploration des volcans",
+          "logo": "/icones/forage_glace.png",
+          "seuil": 20,
+          "idcible": null,
+          "ratio": 2,
+          "typeratio": "vitesse",
+          "unlocked": false,
+          "__typename": "Palier"
+        },
+        {
+          "name": "Combinaisons résistantes à la chaleur",
+          "logo": "/icones/usine_glace.png",
+          "seuil": 75,
+          "idcible": null,
+          "ratio": 2,
+          "typeratio": "vitesse",
+          "unlocked": false,
+          "__typename": "Palier"
+        }
+      ],
+      "__typename": "Product"
+    },
+    {
+      "id": 6,
+      "name": "Etoile",
+      "logo": "/icones/planete6.gif",
+      "cout": 1244160,
+      "croissance": 1.11,
+      "revenu": 622080,
+      "vitesse": 84000,
+      "quantite": 0,
+      "timeleft": 0,
+      "managerUnlocked": false,
+      "paliers": [
+        {
+          "name": "Exploration stellaire",
+          "logo": "/icones/forage_lave.png",
+          "seuil": 20,
+          "idcible": null,
+          "ratio": 2,
+          "typeratio": "vitesse",
+          "unlocked": false,
+          "__typename": "Palier"
+        },
+        {
+          "name": "Construction de stations spatiales",
+          "logo": "/icones/usine_lave.png",
+          "seuil": 75,
+          "idcible": null,
+          "ratio": 2,
+          "typeratio": "gain",
+          "unlocked": false,
+          "__typename": "Palier"
+        }
+      ],
+      "__typename": "Product"
     }
   ],
   "allunlocks": [
@@ -58,7 +237,8 @@
       "idcible": 0,
       "ratio": 2,
       "typeratio": "gain",
-      "unlocked": false
+      "unlocked": false,
+      "__typename": "Palier"
     },
     {
       "name": "Guilde des explorateurs",
@@ -67,7 +247,8 @@
       "idcible": 0,
       "ratio": 3,
       "typeratio": "gain",
-      "unlocked": false
+      "unlocked": false,
+      "__typename": "Palier"
     },
     {
       "name": "Événements cosmiques",
@@ -76,7 +257,8 @@
       "idcible": 0,
       "ratio": 3,
       "typeratio": "gain",
-      "unlocked": false
+      "unlocked": false,
+      "__typename": "Palier"
     },
     {
       "name": "Exploration de l'espace profond",
@@ -85,7 +267,8 @@
       "idcible": 0,
       "ratio": 3,
       "typeratio": "gain",
-      "unlocked": false
+      "unlocked": false,
+      "__typename": "Palier"
     }
   ],
   "upgrades": [
@@ -96,7 +279,8 @@
       "idcible": 1,
       "ratio": 3,
       "typeratio": "gain",
-      "unlocked": false
+      "unlocked": false,
+      "__typename": "Palier"
     },
     {
       "name": "Hypercompagnon",
@@ -105,7 +289,8 @@
       "idcible": 2,
       "ratio": 3,
       "typeratio": "gain",
-      "unlocked": false
+      "unlocked": false,
+      "__typename": "Palier"
     },
     {
       "name": "Transmutation stellaire",
@@ -114,7 +299,8 @@
       "idcible": 3,
       "ratio": 3,
       "typeratio": "gain",
-      "unlocked": false
+      "unlocked": false,
+      "__typename": "Palier"
     },
     {
       "name": "Générateur gravitationnel",
@@ -123,7 +309,8 @@
       "idcible": 4,
       "ratio": 3,
       "typeratio": "gain",
-      "unlocked": false
+      "unlocked": false,
+      "__typename": "Palier"
     },
     {
       "name": "Réseau interplanétaire",
@@ -132,7 +319,8 @@
       "idcible": 5,
       "ratio": 3,
       "typeratio": "gain",
-      "unlocked": false
+      "unlocked": false,
+      "__typename": "Palier"
     },
     {
       "name": "Nexus planétaire",
@@ -141,7 +329,8 @@
       "idcible": 6,
       "ratio": 3,
       "typeratio": "gain",
-      "unlocked": false
+      "unlocked": false,
+      "__typename": "Palier"
     },
     {
       "name": "Résonateur cosmique",
@@ -150,7 +339,8 @@
       "idcible": 0,
       "ratio": 3,
       "typeratio": "gain",
-      "unlocked": false
+      "unlocked": false,
+      "__typename": "Palier"
     },
     {
       "name": "Aura d'adaptation",
@@ -159,7 +349,8 @@
       "idcible": 1,
       "ratio": 3,
       "typeratio": "gain",
-      "unlocked": false
+      "unlocked": false,
+      "__typename": "Palier"
     },
     {
       "name": "Aegis-Forge",
@@ -168,7 +359,8 @@
       "idcible": 2,
       "ratio": 3,
       "typeratio": "gain",
-      "unlocked": false
+      "unlocked": false,
+      "__typename": "Palier"
     },
     {
       "name": "Vortex dimensionnel",
@@ -177,7 +369,8 @@
       "idcible": 3,
       "ratio": 3,
       "typeratio": "gain",
-      "unlocked": false
+      "unlocked": false,
+      "__typename": "Palier"
     },
     {
       "name": "Harmonisateur planétaire",
@@ -186,7 +379,8 @@
       "idcible": 4,
       "ratio": 3,
       "typeratio": "gain",
-      "unlocked": false
+      "unlocked": false,
+      "__typename": "Palier"
     },
     {
       "name": "Sentinelles cosmiques",
@@ -195,7 +389,8 @@
       "idcible": 5,
       "ratio": 3,
       "typeratio": "gain",
-      "unlocked": false
+      "unlocked": false,
+      "__typename": "Palier"
     },
     {
       "name": "Spectrodrone",
@@ -204,7 +399,8 @@
       "idcible": 6,
       "ratio": 3,
       "typeratio": "gain",
-      "unlocked": false
+      "unlocked": false,
+      "__typename": "Palier"
     },
     {
       "name": "Cristaux cosmiques",
@@ -213,7 +409,8 @@
       "idcible": 0,
       "ratio": 3,
       "typeratio": "gain",
-      "unlocked": false
+      "unlocked": false,
+      "__typename": "Palier"
     }
   ],
   "angelupgrades": [
@@ -224,7 +421,8 @@
       "idcible": 0,
       "ratio": 3,
       "typeratio": "gain",
-      "unlocked": false
+      "unlocked": false,
+      "__typename": "Palier"
     },
     {
       "name": "Réseau neuronal interstellaire",
@@ -233,7 +431,8 @@
       "idcible": -1,
       "ratio": 2,
       "typeratio": "ange",
-      "unlocked": false
+      "unlocked": false,
+      "__typename": "Palier"
     },
     {
       "name": "Exosquelette xénomorphe",
@@ -242,7 +441,8 @@
       "idcible": -1,
       "ratio": 2,
       "typeratio": "ange",
-      "unlocked": false
+      "unlocked": false,
+      "__typename": "Palier"
     },
     {
       "name": "Essaim parasitaire",
@@ -251,7 +451,8 @@
       "idcible": 0,
       "ratio": 5,
       "typeratio": "gain",
-      "unlocked": false
+      "unlocked": false,
+      "__typename": "Palier"
     }
   ],
   "managers": [
@@ -262,7 +463,8 @@
       "idcible": 1,
       "ratio": 0,
       "typeratio": "gain",
-      "unlocked": false
+      "unlocked": false,
+      "__typename": "Palier"
     },
     {
       "name": "Nelson Mandela",
@@ -271,7 +473,8 @@
       "idcible": 2,
       "ratio": 0,
       "typeratio": "gain",
-      "unlocked": false
+      "unlocked": false,
+      "__typename": "Palier"
     },
     {
       "name": "Elon Musk",
@@ -280,7 +483,8 @@
       "idcible": 3,
       "ratio": 0,
       "typeratio": "gain",
-      "unlocked": false
+      "unlocked": false,
+      "__typename": "Palier"
     },
     {
       "name": "Roald Amundsen",
@@ -289,7 +493,8 @@
       "idcible": 4,
       "ratio": 0,
       "typeratio": "gain",
-      "unlocked": false
+      "unlocked": false,
+      "__typename": "Palier"
     },
     {
       "name": "George Lucas",
@@ -298,7 +503,8 @@
       "idcible": 5,
       "ratio": 0,
       "typeratio": "gain",
-      "unlocked": false
+      "unlocked": false,
+      "__typename": "Palier"
     },
     {
       "name": "Albert Einstein",
@@ -307,7 +513,8 @@
       "idcible": 6,
       "ratio": 0,
       "typeratio": "gain",
-      "unlocked": false
+      "unlocked": false,
+      "__typename": "Palier"
     }
   ]
 }
