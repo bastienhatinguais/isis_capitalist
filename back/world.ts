@@ -6,7 +6,7 @@ module.exports = {
   totalangels: 0,
   activeangels: 0,
   angelbonus: 2,
-  lastupdate: null,
+  lastupdate: "1687250267409",
   products: [
     {
       id: 1,
