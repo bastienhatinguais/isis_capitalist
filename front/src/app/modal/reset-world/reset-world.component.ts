@@ -18,9 +18,7 @@ export class ResetWorldComponent {
   }
 
   resetWorld() {
-    console.log('coucou');
     this.wsService.resetWorld().then(() => {
-      console.log('coucou');
       window.location.reload();
     });
   }

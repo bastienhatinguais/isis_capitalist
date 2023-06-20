@@ -82,7 +82,6 @@ export class ProductComponent implements OnInit {
   calcScore() {
     const elapsedTime = Date.now() - this.lastUpdate;
     const qteProduit = this.calcQtProductionforElapseTime(elapsedTime);
-    console.log(qteProduit, elapsedTime, this.product.name);
     if (qteProduit > 0) {
       this.notifyProductionDone.emit({ product: this.product, qteProduit });
     }
