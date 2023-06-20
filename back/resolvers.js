@@ -3,16 +3,20 @@ const world = require("./world.ts");
 
 function saveWorld(context) {
   console.info("Sauvegarde du monde de " + context.user);
-  fs.writeFile(
-    `userworlds/${context.user}-world.json`,
-    JSON.stringify(context.world),
-    (err) => {
-      if (err) {
-        console.error(err);
-        throw new Error(`Erreur d'écriture du monde coté serveur`);
+  try {
+    fs.writeFile(
+      `userworlds/${context.user}-world.json`,
+      JSON.stringify(context.world),
+      (err) => {
+        if (err) {
+          console.error(err);
+          throw new Error(`Erreur d'écriture du monde coté serveur`);
+        }
       }
-    }
-  );
+    );
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 function miseAJourArgent(context) {
