@@ -10,6 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTabsModule } from '@angular/material/tabs';
 import { ManagerComponent } from './modal/manager/manager.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NumberFormatPipe } from './pipe/number-format/number-format-pipe.pipe';
@@ -21,6 +22,8 @@ import { UpgradeComponent } from './modal/upgrade/upgrade.component';
 import { AngelComponent } from './modal/angel/angel.component';
 import { AngelUpgradeComponent } from './modal/angel-upgrade/angel-upgrade.component';
 import { DiamondComponent } from './diamond/diamond.component';
+import { ResetWorldComponent } from './modal/reset-world/reset-world.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -36,8 +39,10 @@ import { DiamondComponent } from './diamond/diamond.component';
     UpgradeComponent,
     AngelUpgradeComponent,
     DiamondComponent,
+    ResetWorldComponent,
   ],
   imports: [
+    FormsModule,
     CommonModule,
     BrowserModule,
     AppRoutingModule,
@@ -48,6 +53,7 @@ import { DiamondComponent } from './diamond/diamond.component';
     MatButtonModule,
     MatDialogModule,
     MatSnackBarModule,
+    MatTabsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

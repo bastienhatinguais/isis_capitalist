@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
   @ViewChildren(ProductComponent)
   productsComponent: QueryList<ProductComponent> = new QueryList();
   title = 'front';
+  username = '';
   world: World = new World();
   server = '';
   quantitesAchat = [1, 10, 100, -1];
@@ -28,6 +29,8 @@ export class AppComponent implements OnInit {
   constructor(public service: WebserviceService, public dialog: MatDialog) {}
 
   ngOnInit() {
+    this.username = localStorage.getItem('username') ?? 'Isis';
+    localStorage.setItem('username', this.username);
     this.server = this.service.server;
     this.service
       .getWorld()
@@ -46,12 +49,23 @@ export class AppComponent implements OnInit {
 
   onProductionDone(data: { product: Product; qteProduit: number }) {
     const moneyMade =
-      data.product.quantite *
       data.product.revenu *
       data.qteProduit *
       (1 + (this.world.activeangels * this.world.angelbonus) / 100);
     this.world.money += moneyMade;
     this.world.score += moneyMade;
+  }
+
+  onUsernameChanged(event: any): void {
+    const newUsername = event.target.value;
+    this.username = newUsername;
+    localStorage.setItem('username', newUsername);
+    this.service.user = newUsername;
+    new Promise((res) => setTimeout(res, 2000)).then(() =>
+      this.service
+        .getWorld()
+        .then((world) => (this.world = world.data.getWorld))
+    );
   }
 
   openModal(type: string) {
@@ -91,7 +105,6 @@ export class AppComponent implements OnInit {
 
         if (upgrade.idcible === 0) {
           // Bonus pour tous les produits
-          debugger;
           this.productsComponent.forEach((p) => p.calcUpgrade(upgrade));
         } else if (upgrade.idcible === -1 && upgrade.typeratio === 'ange') {
           this.world.angelbonus += upgrade.ratio;

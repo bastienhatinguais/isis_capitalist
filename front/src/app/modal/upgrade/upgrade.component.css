@@ -1,0 +1,21 @@
+.upgrade-image {
+  width: 80%;
+  height: auto;
+}
+
+.upgrade-card {
+  background-image: url("../../../assets/panel_papier.png");
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 100px;
+}
+
+.ratio {
+  color: #fd004d;
+}
+
+.image-upgrade {
+  width: 40px;
+  height: 40px;
+}

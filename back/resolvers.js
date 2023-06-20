@@ -21,7 +21,6 @@ function miseAJourArgent(context) {
     const quantite = calcQtProductionforElapseTime(product, tempsEcoule);
     const moneyMade =
       product.revenu *
-      product.quantite *
       quantite *
       (1 + (context.world.activeangels * context.world.angelbonus) / 100);
     context.world.money += moneyMade;
@@ -33,9 +32,9 @@ function miseAJourArgent(context) {
 function calcQtProductionforElapseTime(product, tempsEcoule) {
   let nbrProduction = 0;
   if (product.managerUnlocked) {
-    if (tempsEcoule - product.timeleft > 0) {
+    if (tempsEcoule > this.product.timeleft) {
       var nbr = Math.trunc((tempsEcoule - product.timeleft) / product.vitesse);
-      nbrProduction = nbr + 1;
+      nbrProduction = nbr * product.quantite + 1;
       // /!\ on soustrait la vitesse pour avoir le timeleft
       product.timeleft =
         product.vitesse -

@@ -1,9 +1,10 @@
 .header {
   display: grid;
-  grid-template-columns: 70% 10% 10% 10%;
+  grid-template-columns: 10% 10% 10% 40% 10% 10% 10%;
   color: white;
   font-size: larger;
   line-height: 50px;
+  padding: 10px;
 }
 
 .main {

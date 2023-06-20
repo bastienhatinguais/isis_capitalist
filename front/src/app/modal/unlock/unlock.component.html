@@ -1,40 +1,61 @@
-<h2 mat-dialog-title>Install Angular</h2>
-<mat-dialog-content class="mat-typography">
+<div class="modal-content">
   <h1 class="title">Unlocks</h1>
-  <div *ngFor="let product of data.world.products">
-    <div *ngFor="let palier of product.paliers">
-      <mat-card *ngIf="!palier.unlocked" class="example-card">
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title> {{ palier.name }} </mat-card-title>
-          <mat-card-subtitle>
-            {{ product.name }}
-          </mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-          <span> {{ palier.seuil }}</span>
-          <span> {{ palier.typeratio }} : {{ palier.ratio }}</span>
-          <br />
-        </mat-card-content>
-      </mat-card>
-    </div>
-  </div>
-  <div *ngFor="let allUnlock of data.world.allunlocks">
-    <mat-card *ngIf="!allUnlock.unlocked" class="example-card">
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title> All unlock :{{ allUnlock.name }} </mat-card-title>
-        <mat-card-subtitle>
-          {{ allUnlock.typeratio }}
-        </mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <span> {{ allUnlock.seuil }}</span>
-        <br />
-      </mat-card-content>
-    </mat-card>
-  </div>
-</mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button mat-dialog-close>Cancel</button>
-</mat-dialog-actions>
+  <mat-tab-group>
+    <mat-tab label="Unlock">
+      <div *ngFor="let product of data.world.products">
+        <div *ngFor="let palier of product.paliers">
+          <div
+            *ngIf="!palier.unlocked"
+            class="d-flex row unlock-card align-items-center"
+          >
+            <div class="col-2 offset-1 img-col mb-3">
+              <img
+                src="../../../assets/green_potion.gif"
+                *ngIf="palier.typeratio === 'vitesse'"
+              />
+              <img
+                src="../../../assets/red_potion.gif"
+                *ngIf="palier.typeratio === 'gain'"
+              />
+            </div>
+            <div class="col-5 p-0 mb-3 lh-sm">
+              <mat-card-title> {{ palier.name }} </mat-card-title>
+              <br />
+              <mat-card-subtitle>
+                {{ product.name }} x{{ palier.seuil }}
+              </mat-card-subtitle>
+            </div>
+            <div class="col-2 p-0 mb-3 lh-sm ml-2">
+              <span> {{ palier.typeratio }} </span>
+              <span class="ratio">x{{ palier.ratio }} </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="All unlock">
+      <div *ngFor="let allUnlock of data.world.allunlocks">
+        <div
+          *ngIf="!allUnlock.unlocked"
+          class="d-flex row unlock-card align-items-center"
+        >
+          <div class="col-2 offset-1 img-col mb-3">
+            <img src="../../../assets/purple_potion.gif" />
+          </div>
+          <div class="col-5 p-0 mb-3 lh-sm">
+            <mat-card-title> {{ allUnlock.name }} </mat-card-title>
+            <mat-card-subtitle> x{{ allUnlock.seuil }} </mat-card-subtitle>
+          </div>
+          <div class="col-2 p-0 mb-3 lh-sm ml-2">
+            <span> {{ allUnlock.typeratio }} </span>
+            <span class="ratio">x{{ allUnlock.ratio }} </span>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>Annuler</button>
+  </mat-dialog-actions>
+</div>

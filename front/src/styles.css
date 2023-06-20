@@ -12,6 +12,7 @@ body {
 }
 
 body {
+  cursor: url("assets/cursor.png"), auto;
   margin: 0;
   font-family: "Toriko";
   background: url("assets/bg_space.gif") no-repeat center center fixed;
@@ -51,8 +52,16 @@ body {
   display: block;
 }
 
-::ng-deep .custom-dialog-container .mat-dialog-container {
-  border-radius: none !important;
-  box-shadow: none !important;
-  background-color: transparent !important;
+.modal-content {
+  padding: 20px 24px 20px 24px;
+  display: block;
+  max-height: 65vh;
+  flex-grow: 1;
+  box-sizing: border-box;
+  margin: 0;
+  overflow: auto;
+}
+
+.ratio {
+  color: #fd004d;
 }

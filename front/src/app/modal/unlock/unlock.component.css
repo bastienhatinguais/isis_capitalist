@@ -1,0 +1,13 @@
+.unlock-card {
+  background-image: url("../../../assets/panel_bois.png");
+  background-size: auto 110%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 120px;
+}
+
+.img-col img {
+  margin-left: 15px;
+  height: 80%;
+  width: 80%;
+}

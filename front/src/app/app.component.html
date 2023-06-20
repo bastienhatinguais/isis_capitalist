@@ -1,8 +1,22 @@
 <div class="header">
-  <img [attr.src]="service.server + world.logo" />
+  <img [attr.src]="service.server + world.logo" class="w-50 ms-auto me-0" />
+  <div class="lh-sm align-middle">
+    PLANET<br />
+    CAPITALIST
+  </div>
+  <div>
+    <input
+      matInput
+      color="primary"
+      placeholder="Pseudo"
+      class="p-0 fs-6 h-75 w-75"
+      [ngModel]="username"
+      (change)="onUsernameChanged($event)"
+    />
+  </div>
+  <div></div>
   <div>{{ world.money | numberFormat }} <app-diamond></app-diamond></div>
-  <div>{{ world.angelbonus }}</div>
-  <div>{{ service.user }}</div>
+  <div>{{ world.angelbonus }}%</div>
   <div>
     <button mat-flat-button (click)="changeQuantiteAchat()" color="primary">
       x{{
@@ -14,13 +28,13 @@
   </div>
 </div>
 <div class="main">
-  <div class="col">
+  <div class="col d-flex justify-content-around w-75">
     <button mat-button (click)="openModal('manager')">Managers</button>
     <button mat-button (click)="openModal('unlock')">Unlocks</button>
     <button mat-button (click)="openModal('upgrade')">Upgrade</button>
     <button mat-button (click)="openModal('angel')">Investors</button>
     <button mat-button (click)="openModal('angel-upgrade')">
-      Angel upgrades
+      Alien upgrades
     </button>
   </div>
   <mat-grid-list cols="4" rowHeight="150px">

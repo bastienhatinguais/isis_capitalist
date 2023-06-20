@@ -1,34 +1,43 @@
-<mat-dialog-content class="mat-typography">
-  <h1 class="title">Angel Upgrade</h1>
-  <div *ngFor="let upgrade of data.world.angelupgrades">
-    <mat-card *ngIf="!upgrade.unlocked" class="example-card">
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title> {{ upgrade.name }} </mat-card-title>
+<div class="modal-content">
+  <div class="d-flex row justify-content-space-between align-items-center">
+    <div class="col"><h1>Alien Upgrade</h1></div>
+    <div class="col text-end">
+      <span class="activeangels">{{ data.world.activeangels }}</span> aliens
+    </div>
+  </div>
+  <div *ngFor="let upgrade of data.world.angelupgrades; last as isLast">
+    <div *ngIf="!upgrade.unlocked" class="d-flex row align-items-center my-3">
+      <div class="col-1 offset-1">
+        <img [src]="wsService.server + upgrade.logo" class="img-alien" />
+      </div>
+      <div class="col-5">
+        <div>{{ upgrade.name }}</div>
         <mat-card-subtitle *ngIf="upgrade.idcible === 0">
-          Amélioration de tous les produits en {{ upgrade.typeratio }} (x{{
-            upgrade.ratio
-          }})
+          Amélioration de tous les produits en
+          {{ upgrade.typeratio }}
+          <span class="ratio"> x{{ upgrade.ratio }}</span>
         </mat-card-subtitle>
         <mat-card-subtitle *ngIf="upgrade.typeratio === 'ange'">
-          Amélioration de l'efficatité des anges (x{{ upgrade.ratio }})
+          Amélioration de l'efficacité des anges
+          <span class="ratio">x{{ upgrade.ratio }}</span>
         </mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <span> {{ upgrade.seuil }} anges</span>
-        <br />
+      </div>
+      <div class="col-2">
+        <span> {{ upgrade.seuil | numberFormat }} aliens</span>
+      </div>
+      <div class="col-2">
         <button
-          mat-flat-button
+          class="buy-button"
           (click)="buyAngelUpgrade(upgrade)"
-          color="primary"
           [disabled]="data.world.activeangels < upgrade.seuil"
         >
-          Acheter upgrade
+          <span> Acheter upgrade </span>
         </button>
-      </mat-card-content>
-    </mat-card>
+      </div>
+      <hr *ngIf="!isLast" class="w-50 mx-auto mt-3" />
+    </div>
   </div>
-</mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button mat-dialog-close>Cancel</button>
-</mat-dialog-actions>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>Annuler</button>
+  </mat-dialog-actions>
+</div>

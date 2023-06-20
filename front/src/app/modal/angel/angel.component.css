@@ -1,0 +1,20 @@
+.alien-button img {
+  width: 45px;
+  height: 45px;
+}
+
+.alien-button {
+  width: 280px;
+  height: 140px;
+}
+
+.activeangels {
+  color: #82e157;
+}
+
+.alien-button:active span {
+  position: relative;
+  top: 10px !important;
+  line-height: 15px;
+  display: block;
+}

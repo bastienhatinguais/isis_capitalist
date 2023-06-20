@@ -48,9 +48,10 @@ export class ProductComponent implements OnInit {
   ngOnInit() {
     setInterval(() => {
       this.calcScore();
-    }, 80);
+    }, 100);
   }
 
+  // Pas très jolie
   calcQtProductionforElapseTime(tempsEcoule: number) {
     let nbrProduction = 0;
     if (this.product.managerUnlocked) {
@@ -58,7 +59,7 @@ export class ProductComponent implements OnInit {
         var nbr = Math.trunc(
           (tempsEcoule - this.product.timeleft) / this.product.vitesse
         );
-        nbrProduction = nbr + 1;
+        nbrProduction = nbr * this.product.quantite + 1;
         // /!\ on soustrait la vitesse pour avoir le timeleft
         this.product.timeleft =
           this.product.vitesse -
@@ -79,24 +80,28 @@ export class ProductComponent implements OnInit {
   }
 
   calcScore() {
-    // Vérification si la production est à l'arrêt (manager verouillé et timeleft = 0)
-    if (this.product.timeleft <= 0 && !this.product.managerUnlocked) {
-      this.progressBarValue = 0;
-      return;
-    }
     const elapsedTime = Date.now() - this.lastUpdate;
     const qteProduit = this.calcQtProductionforElapseTime(elapsedTime);
+    console.log(qteProduit, elapsedTime, this.product.name);
     if (qteProduit > 0) {
       this.notifyProductionDone.emit({ product: this.product, qteProduit });
     }
-    this.progressBarValue =
-      ((this.product.vitesse - this.product.timeleft) / this.product.vitesse) *
-      100;
+
+    // Vérification si la production est à l'arrêt (manager verouillé et timeleft = 0)
+    if (this.product.timeleft <= 0 && !this.product.managerUnlocked) {
+      this.progressBarValue = 0;
+    } else {
+      this.progressBarValue =
+        ((this.product.vitesse - this.product.timeleft) /
+          this.product.vitesse) *
+        100;
+    }
+
     this.lastUpdate = Date.now();
   }
 
   lancerProduction() {
-    if (!this.product.managerUnlocked) {
+    if (!this.product.managerUnlocked && this.product.timeleft == 0) {
       this.product.timeleft = this.product.vitesse;
       this.wsService
         .lancerProduction(this.product)

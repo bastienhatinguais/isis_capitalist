@@ -14,7 +14,7 @@ export class AngelUpgradeComponent {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { world: World; server: string },
-    private wsService: WebserviceService
+    public wsService: WebserviceService
   ) {}
 
   buyAngelUpgrade(upgrade: Palier) {

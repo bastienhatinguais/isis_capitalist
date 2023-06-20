@@ -1,39 +1,31 @@
-<div class="manager-modal">
-  <div class="manager-content">
-    <img
-      src="../../../assets/background_manager.png"
-      class="manager-background"
-    />
-    <h1 class="title">Acheter des managers</h1>
-    <h4>Automatisez votre production !</h4>
-    <div *ngFor="let manager of data.world.managers" class="px-3">
-      <div *ngIf="!manager.unlocked" class="d-flex row m-3 manager-card p-3">
-        <div class="col d-flex justify-content-center align-items-center">
-          <img
-            [src]="wsService.server + '/' + manager.logo"
-            class="rounded-circle manager-image"
-          />
-        </div>
-        <div class="col py-3">
-          {{ manager.name }}
-          <br />
-          <mat-card-subtitle>
-            {{ data.world.products[manager.idcible - 1].name }}
-          </mat-card-subtitle>
-          <button
-            class="buy-button my-2"
-            (click)="hireManager(manager)"
-            [disabled]="
-              data.world.money < manager.seuil || data.world.money == 0
-            "
-          >
-            <span> {{ manager.seuil }} <app-diamond></app-diamond> </span>
-          </button>
-        </div>
+<div class="modal-content">
+  <h1>Acheter des managers</h1>
+  <h4>Automatisez votre production !</h4>
+  <div *ngFor="let manager of data.world.managers" class="px-3">
+    <div *ngIf="!manager.unlocked" class="d-flex row m-3 manager-card p-3">
+      <div class="col d-flex justify-content-center align-items-center">
+        <img
+          [src]="wsService.server + '/' + manager.logo"
+          class="rounded-circle manager-image"
+        />
+      </div>
+      <div class="col py-3">
+        {{ manager.name }}
+        <br />
+        <mat-card-subtitle>
+          {{ data.world.products[manager.idcible - 1].name }}
+        </mat-card-subtitle>
+        <button
+          class="buy-button my-2"
+          (click)="hireManager(manager)"
+          [disabled]="data.world.money < manager.seuil || data.world.money == 0"
+        >
+          <span> {{ manager.seuil }} <app-diamond></app-diamond> </span>
+        </button>
       </div>
     </div>
   </div>
-  <mat-dialog-actions>
-    <button mat-button mat-dialog-close>Retour</button>
-  </mat-dialog-actions>
 </div>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Retour</button>
+</mat-dialog-actions>

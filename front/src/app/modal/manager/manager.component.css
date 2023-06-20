@@ -20,19 +20,3 @@
   height: 200px;
   width: 400px;
 }
-
-.manager-content {
-  padding: 20px 24px 20px 24px;
-  display: block;
-  max-height: 65vh;
-  flex-grow: 1;
-  box-sizing: border-box;
-  margin: 0;
-  overflow: auto;
-}
-
-:host ::ng-deep mat-dialog-container {
-  border-radius: none !important;
-  box-shadow: none !important;
-  background-color: transparent !important;
-}
