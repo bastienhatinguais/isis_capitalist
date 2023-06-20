@@ -12,9 +12,9 @@ COPY . ./
 RUN npm run build
 
 # Étape 2: Servir l'application à partir d'un serveur Nginx
-FROM nginx:stable-alpine
+FROM nginx:alpine
 
-COPY --from=builder ./build/dist/front /usr/share/nginx/html
+COPY --from=builder /usr/src/app/dist/front /usr/share/nginx/html
 
 EXPOSE 80
 
