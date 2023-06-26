@@ -16,8 +16,8 @@ import { Palier } from './model/palier';
   providedIn: 'root',
 })
 export class WebserviceService {
-  // server = 'https://isiscapitalist-bastien-back.azurewebsites.net';
-  server = 'http://localhost:4000';
+  server = 'https://isiscapitalist-bastien-back.azurewebsites.net';
+  // server = 'http://localhost:4000';
   // server = 'https://isiscapitalistgraphql.kk.kurasawa.fr';
   public user = localStorage.getItem('username') ?? 'Isis';
 
